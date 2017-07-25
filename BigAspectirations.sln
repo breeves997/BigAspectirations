@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigAspectirations", "BigAspectirations\BigAspectirations.csproj", "{0FCB21AB-6A52-48B9-B526-CFF7A2D6587C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterceptorExample", "BigAspectirations\InterceptorExample.csproj", "{0FCB21AB-6A52-48B9-B526-CFF7A2D6587C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigAspectirations.Tests", "BigAspectirations.Tests\BigAspectirations.Tests.csproj", "{D3A162EE-073B-4FC7-BA6F-F049DD5165B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MethodDecoratorExample", "MethodDecoratorExample\MethodDecoratorExample.csproj", "{C0B24DA1-F048-45BA-83B2-312DDEE1A447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,24 +17,12 @@ Global
 		{0FCB21AB-6A52-48B9-B526-CFF7A2D6587C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FCB21AB-6A52-48B9-B526-CFF7A2D6587C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FCB21AB-6A52-48B9-B526-CFF7A2D6587C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3A162EE-073B-4FC7-BA6F-F049DD5165B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3A162EE-073B-4FC7-BA6F-F049DD5165B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3A162EE-073B-4FC7-BA6F-F049DD5165B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3A162EE-073B-4FC7-BA6F-F049DD5165B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B24DA1-F048-45BA-83B2-312DDEE1A447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B24DA1-F048-45BA-83B2-312DDEE1A447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B24DA1-F048-45BA-83B2-312DDEE1A447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B24DA1-F048-45BA-83B2-312DDEE1A447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://fielding.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = BigAspectirations\\BigAspectirations.csproj
-		SccProjectName1 = BigAspectirations
-		SccLocalPath1 = BigAspectirations
-		SccProjectUniqueName2 = BigAspectirations.Tests\\BigAspectirations.Tests.csproj
-		SccProjectName2 = BigAspectirations.Tests
-		SccLocalPath2 = BigAspectirations.Tests
 	EndGlobalSection
 EndGlobal

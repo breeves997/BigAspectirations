@@ -37,7 +37,7 @@ namespace BigAspectirations
                     this.Name = stringArray[i];
 
                     // Set the default:
-                    this.LibraryClassName = "DefaultCommands";
+                    this.LibraryClassName = "Commands";
                     string[] s = stringArray[0].Split('.');
                     if (s.Length == 2)
                     {

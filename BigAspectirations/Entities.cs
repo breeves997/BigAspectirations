@@ -1,5 +1,4 @@
-﻿using FSConnect.Accessories.Caching;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,28 +9,42 @@ namespace BigAspectirations.Entities
     /// <summary>
     /// Class that describes various qualities of individuals
     /// </summary>
-    public class Qualities : IFSDomainEntity
+    public class Quality 
     {
+        public Quality(int id)
+        {
+            Id = id;
+        }
+        public Quality() : this(0)
+        {
+            Id = Guid.NewGuid().GetHashCode();
+        }
        public string Name { get; set; }
         public int Desirability { get; set; }
         public string Description { get; set; }
-
-        public long Pid { get; set; }
+        public int Id { get; private set; }
     }
 
-    public class People : IFSDomainEntity
+    public class Person 
     {
-        public People()
+        public Person() : this(0)
         {
-            Qualities = new List<Qualities>();
+            Id = Guid.NewGuid().GetHashCode();
         }
-        public long Pid { get; set; }
+        public Person(int id)
+        {
+            QualityIds = new List<int>();
+            Qualities = new List<Quality>();
+            Id = id;
+        }
+        public int Id { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
         public long CoolnessFactor { get; set; }
         public string Notes { get; set; }
-        List<Qualities> Qualities { get;  set;}
+        public List<int> QualityIds { get;  set;}
+        public List<Quality> Qualities { get;  set;}
         public long GeekFactor { get;  set; }
     }
 }

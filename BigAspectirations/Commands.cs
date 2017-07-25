@@ -1,5 +1,4 @@
-﻿using BigAspectirations.Contracts;
-using BigAspectirations.Entities;
+﻿using BigAspectirations.Entities;
 using BigAspectirations.Services;
 using Ninject;
 using System;
@@ -21,70 +20,30 @@ namespace BigAspectirations.Commands
         }
 
 
-        public static string Test()
+        public static string CreateQuality()
         {
-            QualitiesRequest quality = new QualitiesRequest()
+            Quality quality = new Quality()
             {
-                Name = "Test",
-                Description = "this isn't a quality, only a test",
-                Desirability = 0,
-                Pid = 10
+                Name = "Great Dancer",
+                Description = "He's got the moves like Jagger",
+                Desirability = 70,
             };
-            IKernel kernel = new StandardKernel(new ServiceModule());
-            kernel.Settings.AllowNullInjection = true;
-            QualitiesService svc = kernel.Get<QualitiesService>(); 
-            var result = svc.Post(quality);
-
-            PeopleRequest request = new PeopleRequest();
-            PeopleService peoplesvc = kernel.TryGet<PeopleService>();
-            var result2 = peoplesvc.Post(request);
-            return "success?";
+            IQualitiesRepo svc = Bootstrapper.Kernel.Get<IQualitiesRepo>(); 
+            var result = svc.Create(quality);
+            return "Created new quality";
         }
-
-        public static string PurgeTempVimFiles(string dirPath, bool _explicit = false, bool recursive = false)
+        public static string DescribePerson(int id)
         {
-            string rtn = String.Empty;
-            //search my common paths by default because I hate typing. Ususally I just want to kill a single directory
-            List<string> commonPaths = new List<string> { @"C:\Devl\Products\FPO\Platform\UI-UXBranch\FieldVisor\FieldVisor.WebRole", @"C:\Devl\Products\FPO\Platform\UI-UXBranch\ScadaVisor\ScadaVisor.WebRole",
-            @"C:\Devl\Products\FPO\Platform\FieldVisor\FieldVisor.WebRole", @"C:\Devl\Products\FPO\Platform\FieldVisor\FieldVisor.WebRole"};
-            List<string> dirPaths = new List<string>();
-            if (_explicit)
-                dirPaths = commonPaths.Select(x => String.Join(@"\", x, dirPath)).ToList();
-            else dirPaths.Add(dirPath);
-
-            var pattern = @"\.(js|un)~$";
-            int filesDeleted = 0;
-            foreach (var v in dirPaths)
+            IPeopleRepo svc = Bootstrapper.Kernel.Get<IPeopleRepo>();
+            Person person = svc.Get(id);
+            var sb = new StringBuilder($"{person.FirstName} {person.LastName} is {person.Age} years old with {person.Qualities.Count} qualities. They are ");
+            foreach (var q in person.Qualities)
             {
-                if (Directory.Exists(v))
-                {
-                    DirectoryInfo di = new DirectoryInfo(v);
-                    IEnumerable<FileInfo> fileList;
-                    if (recursive)
-                    {
-                        fileList = di.EnumerateFiles("*.*", SearchOption.AllDirectories).Where(x => Regex.Match(x.FullName, pattern).Success);
-                    }
-                    else
-                    {
-                        fileList = di.GetFiles().Where(x => Regex.Match(x.FullName, pattern).Success);
-                    }
-
-                    filesDeleted += fileList.Count(); //assume the file.Delete() always works
-
-                    try
-                    {
-                        fileList.ToList().ForEach(x => x.Delete());
-                    }
-                    catch
-                    {
-                        rtn = String.Format("One of your files is probably locked, cannot delete all the files. Found {0} to delete though", filesDeleted);
-                    }
-                }
-
-                else return "Directory does not exist";
-
+                sb.Append(q.Name + " " + q.Description + ", ");
             }
-            return String.Format("We deleted {0} files.", filesDeleted);
+            sb.Length -= 2;
+            sb.Append($". This results in a total awesome factor of {person.CoolnessFactor * person.GeekFactor + person.GeekFactor * person.Qualities.Sum(x => x.Desirability) }");
+            return sb.ToString();
         }
 
     }
