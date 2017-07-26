@@ -26,6 +26,9 @@ namespace BigAspectirations.Services
         {
             _logger = logger;
             _qualitiesRepo = qualitiesRepo;
+        }
+        protected PeopleRepo()
+        {
 
         }
         public virtual void Delete(int id)
@@ -53,6 +56,11 @@ namespace BigAspectirations.Services
         {
             _dataStore[toUpdate.Id] = toUpdate;
             return toUpdate;
+        }
+
+        public virtual string Greet()
+        {
+            return "Hello from a concrete implementation!";
         }
     }
 }

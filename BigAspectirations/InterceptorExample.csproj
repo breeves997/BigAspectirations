@@ -139,7 +139,8 @@
     <Compile Include="Commands.cs" />
     <Compile Include="ConsoleCommand.cs" />
     <Compile Include="Entities.cs" />
-    <Compile Include="LoggerInterceptor.cs" />
+    <Compile Include="Interceptors\ExceptionCatcher.cs" />
+    <Compile Include="Interceptors\LoggerInterceptor.cs" />
     <Compile Include="ServiceLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

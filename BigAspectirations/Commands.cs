@@ -46,5 +46,11 @@ namespace BigAspectirations.Commands
             return sb.ToString();
         }
 
+        public static string DemoSelfBind(int id)
+        {
+            PeopleRepo svc = Bootstrapper.Kernel.Get<PeopleRepo>();
+            return svc.Greet();
+        }
+
     }
 }

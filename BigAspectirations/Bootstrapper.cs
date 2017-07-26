@@ -23,11 +23,18 @@ namespace BigAspectirations
         public override void Load()
         {
 
-            //Inject standard repo into all classes which depend on ICrudCapable via constructor injection
-            Bind<IPeopleRepo>().To<PeopleRepo>().Intercept().With<LoggerInterceptor>();
-            //Inject repo with interception on qualities service. Ninject has overrides to make this smarter
-            Bind<IQualitiesRepo>().To<QualitiesRepo>().Intercept().With<LoggerInterceptor>();
-            //Inject standard service logger
+            //One interceptor
+            //Bind<IPeopleRepo>().To<PeopleRepo>().Intercept().With<LoggerInterceptor>();
+            //Bind<IQualitiesRepo>().To<QualitiesRepo>().Intercept().With<LoggerInterceptor>();
+
+            //multiple
+            var bindingPeople = Bind<IPeopleRepo>().To<PeopleRepo>();
+            bindingPeople.Intercept().With<LoggerInterceptor>().InOrder(1);
+            bindingPeople.Intercept().With<ExceptionCatcher>().InOrder(2);
+            var bindingQualities = Bind<IQualitiesRepo>().To<QualitiesRepo>();
+            bindingQualities.Intercept().With<LoggerInterceptor>().InOrder(2);
+            bindingQualities.Intercept().With<ExceptionCatcher>().InOrder(1);
+
             Bind<ILogger>().To<ServiceLogger>();
 
             //Give the people service self interception, meaning all it's method calls will hit the interceptor. NOTE we need to create a parameterless constructor for this to work.
